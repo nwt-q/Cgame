@@ -1,23 +1,22 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-char Arr[15][15] = { 0 };//Õâ¸öÓ¦¸ÃÊÇÆåÅÌ
-char X = 0, Y = 0; //ÎÒ²ÂÕâ¸öÊÇÊäÈëµÄ×ø±ê
-char Now = -1;     //ÓÃÀ´´æ´¢Ê²Ã´Æå×Ó
-
-char print(char n); //´òÓ¡ÆåÅÌ
-void show(void); //ÏÔÊ¾ÆåÅÌ//ÎÒ²ÂÕâ¸ö-¾ÍÊÇ´òÓ¡ÆåÅÌ
-void act(void);  //ĞĞÎª
-int judge(int a, int b);  //Õâ¸öÊÇÊ²Ã´?ÅĞ¶Ï?ÅĞ¶ÏÊ²Ã´?
+char Arr[15][15] = { 0 };//è¿™ä¸ªåº”è¯¥æ˜¯æ£‹ç›˜
+char X = 0, Y = 0; //æˆ‘çŒœè¿™ä¸ªæ˜¯è¾“å…¥çš„åæ ‡
+char Now = -1;     //ç”¨æ¥å­˜å‚¨ä»€ä¹ˆæ£‹å­
+char print(char n); //æ‰“å°æ£‹ç›˜
+void show(void); //æ˜¾ç¤ºæ£‹ç›˜//æˆ‘çŒœè¿™ä¸ª-å°±æ˜¯æ‰“å°æ£‹ç›˜
+void act(void);  //è¡Œä¸º
+int judge(int a, int b);  //è¿™ä¸ªæ˜¯ä»€ä¹ˆ?åˆ¤æ–­?åˆ¤æ–­ä»€ä¹ˆ?
 
 int main(int argc, const char* argv[]) {
-	system("title  5×ÓÆå");
+	system("title  5å­æ£‹");
 	system("mode con cols=64 lines=32");
 	system("color E0");
 	while (1) {
 		show();
-		if (!(judge(0, 1) || judge(1, 0) || judge(1, -1) || judge(1, 1)))//¶ÔÕûÌå
-			Now = -Now; //Õâ¸öÊ²Ã´?//Å¶Å¶Å¶¶Ôµ±ÓĞ5¸öÆå×ÓµÄÊ±ºòÏû³ı?
+		if (!(judge(0, 1) || judge(1, 0) || judge(1, -1) || judge(1, 1)))//å¯¹æ•´ä½“
+			Now = -Now; //è¿™ä¸ªä»€ä¹ˆ?//å“¦å“¦å“¦å¯¹å½“æœ‰5ä¸ªæ£‹å­çš„æ—¶å€™æ¶ˆé™¤?
 		else
 			return 0;
 		act(); //???
@@ -28,24 +27,24 @@ char print(char n) { //????
 	char ch = ' ';  //????
 	switch (n)
 	{
-	case 0:ch = '$'; break;//´ú±í¿Õ¸ñ
-	case 1:ch ='X'; break;// ´ú±íÆå×ÓÀàĞÍ
-	case -1:ch = '#'; break;// ´ú±íÆå×ÓÀàĞÍ
+	case 0:ch = '$'; break;//ä»£è¡¨ç©ºæ ¼
+	case 1:ch ='X'; break;// ä»£è¡¨æ£‹å­ç±»å‹
+	case -1:ch = '#'; break;// ä»£è¡¨æ£‹å­ç±»å‹
 	}
 	return ch; //???
 }
 
 void show(void)
 {
-	system("cls");//Çå³ıµ±Ç°»º´æ
+	system("cls");//æ¸…é™¤å½“å‰ç¼“å­˜
 	printf(" ");
 	for (int i = 0; i < 15; i++)
 	{//???????
-		printf(" %2d", i); //´òÓ¡ĞĞ×ø±ê
+		printf(" %2d", i); //æ‰“å°è¡Œåæ ‡
 	}
 	printf("\n");
 	for (int i = 0; i < 15; i++) {
-		printf("%2d ", i);  //´òÓ¡ÁĞ×ø±ê
+		printf("%2d ", i);  //æ‰“å°åˆ—åæ ‡
 		for (int j = 0; j < 15; j++)
 		{
 			printf(" %c ", print(Arr[i][j]));
@@ -56,28 +55,28 @@ void show(void)
 
 void act(void)
 {
-	printf("ÇëÊäÈë%cÆå×Ó×ø±ê:", print(Now));
+	printf("è¯·è¾“å…¥%cæ£‹å­åæ ‡:", print(Now));
 	scanf_s("%hhd%hhd", &X, &Y);
-	if (!(X >= 0 && X < 14 && Y >= 0 && Y <= 14 && Arr[X][Y] == 0))//±ß½çÅĞ¶Ï
+	if (!(X >= 0 && X < 14 && Y >= 0 && Y <= 14 && Arr[X][Y] == 0))//è¾¹ç•Œåˆ¤æ–­
 	{
-		printf("ÊäÈë×ø±êÓĞÎó,ÇëÖØĞÂ¿ªÊ¼ÓÎÏ·:\n");
+		printf("è¾“å…¥åæ ‡æœ‰è¯¯,è¯·é‡æ–°å¼€å§‹æ¸¸æˆ:\n");
 		exit(NULL);
-		act();//³ÌĞòÔËĞĞµÄÈë¿Úemm
+		act();//ç¨‹åºè¿è¡Œçš„å…¥å£emm
 	}
 	else
 	{
-		Arr[X][Y] = Now;//·ÅÖÃÆå×ÓµÄÎ»ÖÃ
+		Arr[X][Y] = Now;//æ”¾ç½®æ£‹å­çš„ä½ç½®
 	}
 }
 
-int judge(int a, int b) //ÅĞ¶ÏÊÇ·ñÂú×ã5¸ö×Ó?
+int judge(int a, int b) //åˆ¤æ–­æ˜¯å¦æ»¡è¶³5ä¸ªå­?
 {
 	int cunt = 1;
 	for (int i = -4; i <= 4; i++)
 	{
 		if (X + i < 0 || Y + i < 0)
 		{
-			continue;//Ìø¹ı?
+			continue;//è·³è¿‡?
 		}
 		if (X + i >= 14 || Y + i >= 14)
 		{
@@ -93,7 +92,7 @@ int judge(int a, int b) //ÅĞ¶ÏÊÇ·ñÂú×ã5¸ö×Ó?
 		}
 		if (cunt >= 5)
 		{
-			print("%cÆå»ñÊ¤", print(Now));
+			print("%cæ£‹è·èƒœ", print(Now));
 			return Now;
 		}
 	}
